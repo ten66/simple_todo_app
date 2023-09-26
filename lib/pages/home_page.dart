@@ -11,10 +11,16 @@ class HomePage extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kAppBarColor,
-        leading: const Icon(Icons.settings_outlined),
-        actions: const [
-          Icon(Icons.sort_outlined),
-          SizedBox(width: 15),
+        leading: IconButton(
+          onPressed: () {},
+          icon: const Icon(Icons.settings_outlined),
+        ),
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: const Icon(Icons.sort_outlined),
+          ),
+          const SizedBox(width: 15),
         ],
       ),
       body: const Center(
