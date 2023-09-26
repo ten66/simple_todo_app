@@ -8,7 +8,6 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('TODO App'),
       ),
       body: const Center(
         child: Text('リスト一覧画面'),
