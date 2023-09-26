@@ -10,6 +10,11 @@ class HomePage extends StatelessWidget {
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kAppBarColor,
+        leading: const Icon(Icons.settings_outlined),
+        actions: const [
+          Icon(Icons.sort_outlined),
+          SizedBox(width: 15),
+        ],
       ),
       body: const Center(
         child: Text('リスト一覧画面'),
