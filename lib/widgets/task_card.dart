@@ -34,7 +34,15 @@ class TaskCard extends StatelessWidget {
             ),
 
             // task name
-            Text(taskName),
+            Text(
+              taskName,
+              style: TextStyle(
+                decoration: taskCompleted
+                    ? TextDecoration.lineThrough
+                    : TextDecoration.none,
+                decorationThickness: 1.8,
+              ),
+            ),
           ],
         ),
       ),
