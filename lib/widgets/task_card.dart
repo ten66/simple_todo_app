@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
 
 class TaskCard extends StatelessWidget {
-  const TaskCard({super.key});
+  final String taskName;
+  final bool taskCompleted;
+  final Function(bool?)? onChanged;
+
+  const TaskCard({
+    super.key,
+    required this.taskName,
+    required this.taskCompleted,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,10 +22,14 @@ class TaskCard extends StatelessWidget {
         child: Row(
           children: [
             // check box
-            // Checkbox(value: value, onChanged: onChanged),
+            Checkbox(
+              value: taskCompleted,
+              onChanged: onChanged,
+              activeColor: Color(0xFFFFEEF4),
+            ),
 
             // task name
-            Text('友達に電話をかける'),
+            Text(taskName),
           ],
         ),
         decoration: BoxDecoration(

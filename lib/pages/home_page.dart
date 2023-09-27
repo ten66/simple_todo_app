@@ -32,10 +32,11 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         child: ListView(
           children: [
-            TaskCard(),
-            TaskCard(),
-            TaskCard(),
-            TaskCard(),
+            TaskCard(
+              taskName: '友達に電話をかける',
+              taskCompleted: true,
+              onChanged: ((p0) {}),
+            ),
           ],
         ),
       ),
