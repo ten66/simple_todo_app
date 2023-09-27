@@ -28,10 +28,13 @@ class HomePage extends StatelessWidget {
       // body: const Center(
       //   child: Text('No Task!!'),
       // ),
-      body: ListView(
-        children: [
-          TaskCard(),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: ListView(
+          children: [
+            TaskCard(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: kAppBarColor,

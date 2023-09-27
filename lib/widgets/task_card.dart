@@ -6,10 +6,15 @@ class TaskCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('友達に電話をかける'),
-      decoration: BoxDecoration(
-        color: kTaskCardColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      child: Container(
+        padding: const EdgeInsets.all(15),
+        child: Text('友達に電話をかける'),
+        decoration: BoxDecoration(
+          color: kTaskCardColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     );
   }
