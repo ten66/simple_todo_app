@@ -18,7 +18,7 @@ class TaskCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
       child: Container(
-        padding: const EdgeInsets.all(15),
+        padding: const EdgeInsets.all(10),
         child: Row(
           children: [
             // check box
@@ -26,6 +26,7 @@ class TaskCard extends StatelessWidget {
               value: taskCompleted,
               onChanged: onChanged,
               activeColor: Color(0xFFFFEEF4),
+              checkColor: kTaskCardColor,
             ),
 
             // task name

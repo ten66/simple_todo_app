@@ -3,8 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  List taskList = [
+    ['友達に電話する', false],
+    ['洗濯する', false]
+  ];
+
+  void checkBoxChanged(bool? value, int index) {
+    setState(() {
+      taskList[index][1] = !taskList[index][1];
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,14 +46,13 @@ class HomePage extends StatelessWidget {
       // ),
       body: Padding(
         padding: const EdgeInsets.all(20),
-        child: ListView(
-          children: [
-            TaskCard(
-              taskName: '友達に電話をかける',
-              taskCompleted: true,
-              onChanged: ((p0) {}),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: taskList.length,
+          itemBuilder: (context, index) => TaskCard(
+            taskName: taskList[index][0],
+            taskCompleted: taskList[index][1],
+            onChanged: (value) => checkBoxChanged(value, index),
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
