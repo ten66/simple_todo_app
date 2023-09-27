@@ -34,10 +34,9 @@ class HomePage extends StatelessWidget {
           builder: (BuildContext context) => CupertinoAlertDialog(
             title: const Text('タスク追加'),
             // content: const TextField(
-            //   obscureText: true,
             //   decoration: InputDecoration(
             //     border: OutlineInputBorder(),
-            //     labelText: 'Password',
+            //     hintText: 'new task',
             //   ),
             // ),
             actions: [
