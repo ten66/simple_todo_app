@@ -33,6 +33,9 @@ class HomePage extends StatelessWidget {
         child: ListView(
           children: [
             TaskCard(),
+            TaskCard(),
+            TaskCard(),
+            TaskCard(),
           ],
         ),
       ),
