@@ -33,12 +33,10 @@ class HomePage extends StatelessWidget {
           barrierDismissible: false,
           builder: (BuildContext context) => CupertinoAlertDialog(
             title: const Text('タスク追加'),
-            // content: const TextField(
-            //   decoration: InputDecoration(
-            //     border: OutlineInputBorder(),
-            //     hintText: 'new task',
-            //   ),
-            // ),
+            content: const CupertinoTextField(
+              placeholder: 'task name',
+              cursorColor: kAppBarColor,
+            ),
             actions: [
               TextButton(
                 onPressed: () => Navigator.pop(context, 'Cancel'),
