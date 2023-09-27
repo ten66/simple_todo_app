@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:simple_todo_app/constants.dart';
 
 class TaskCard extends StatelessWidget {
   const TaskCard({super.key});
@@ -7,6 +8,9 @@ class TaskCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       child: Text('友達に電話をかける'),
+      decoration: BoxDecoration(
+        color: kTaskCardColor,
+      ),
     );
   }
 }
