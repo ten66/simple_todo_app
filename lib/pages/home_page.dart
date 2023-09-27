@@ -23,8 +23,12 @@ class HomePage extends StatelessWidget {
           const SizedBox(width: 15),
         ],
       ),
+      // タスクデータがない時用の画面
+      // body: const Center(
+      //   child: Text('No Task!!'),
+      // ),
       body: const Center(
-        child: Text('リスト一覧画面'),
+        child: Text('Todo'),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: kAppBarColor,
