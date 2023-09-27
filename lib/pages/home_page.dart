@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/widgets/task_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -27,8 +28,10 @@ class HomePage extends StatelessWidget {
       // body: const Center(
       //   child: Text('No Task!!'),
       // ),
-      body: const Center(
-        child: Text('Todo'),
+      body: ListView(
+        children: [
+          TaskCard(),
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: kAppBarColor,
