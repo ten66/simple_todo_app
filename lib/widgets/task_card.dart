@@ -16,7 +16,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+      padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(

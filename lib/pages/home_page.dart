@@ -46,7 +46,7 @@ class _HomePageState extends State<HomePage> {
       //   child: Text('No Task!!'),
       // ),
       body: Padding(
-        padding: const EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 20),
         child: ListView.builder(
           itemCount: taskList.length,
           itemBuilder: (context, index) => TaskCard(
