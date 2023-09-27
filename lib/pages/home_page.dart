@@ -13,7 +13,8 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List taskList = [
     ['友達に電話する', false],
-    ['洗濯する', false]
+    ['洗濯する', false],
+    ['勉強する', false],
   ];
 
   void checkBoxChanged(bool? value, int index) {
