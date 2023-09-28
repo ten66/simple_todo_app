@@ -60,7 +60,11 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: AddTaskButton(controller: _controller),
+      floatingActionButton: AddTaskButton(
+        controller: _controller,
+        onAdd: () => Navigator.pop(context, 'Add'),
+        onCancel: () => Navigator.pop(context, 'Cancel'),
+      ),
     );
   }
 }

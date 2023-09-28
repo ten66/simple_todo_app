@@ -5,9 +5,14 @@ import '../constants.dart';
 
 class AddTaskButton extends StatelessWidget {
   final dynamic controller;
+  final VoidCallback onAdd;
+  final VoidCallback onCancel;
+
   const AddTaskButton({
     super.key,
-    this.controller,
+    required this.controller,
+    required this.onAdd,
+    required this.onCancel,
   });
 
   @override
@@ -26,7 +31,7 @@ class AddTaskButton extends StatelessWidget {
           ),
           actions: [
             TextButton(
-              onPressed: () => Navigator.pop(context, 'Cancel'),
+              onPressed: onCancel,
               child: const Text(
                 'Cancel',
                 style: TextStyle(
@@ -36,7 +41,7 @@ class AddTaskButton extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () => Navigator.pop(context, 'Add'),
+              onPressed: onAdd,
               child: const Text(
                 'Add',
                 style: TextStyle(
