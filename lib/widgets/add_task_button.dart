@@ -4,7 +4,11 @@ import 'package:flutter/material.dart';
 import '../constants.dart';
 
 class AddTaskButton extends StatelessWidget {
-  const AddTaskButton({super.key});
+  final dynamic controller;
+  const AddTaskButton({
+    super.key,
+    this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +19,8 @@ class AddTaskButton extends StatelessWidget {
         barrierDismissible: false,
         builder: (BuildContext context) => CupertinoAlertDialog(
           title: const Text('タスク追加'),
-          content: const CupertinoTextField(
+          content: CupertinoTextField(
+            controller: controller,
             placeholder: 'task name',
             cursorColor: kAppBarColor,
           ),

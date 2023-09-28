@@ -12,6 +12,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  // text controller
+  final _controller = TextEditingController();
+
   List taskList = [
     ['友達に電話する', false],
     ['洗濯する', false],
@@ -57,7 +60,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       ),
-      floatingActionButton: const AddTaskButton(),
+      floatingActionButton: AddTaskButton(controller: _controller),
     );
   }
 }
