@@ -32,7 +32,14 @@ class _HomePageState extends State<HomePage> {
         _controller.clear();
       });
     }
-    Navigator.pop(context, 'Add');
+    Navigator.pop(context);
+  }
+
+  // checkBoxがtrueのtaskを削除する処理
+  void deleteTask() {
+    setState(() {
+      taskList = taskList.where((task) => !task[1]).toList();
+    });
   }
 
   @override
@@ -47,7 +54,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: deleteTask,
             icon: const Icon(Icons.sort_outlined),
           ),
           const SizedBox(width: 15),
@@ -74,7 +81,7 @@ class _HomePageState extends State<HomePage> {
       floatingActionButton: AddTaskButton(
         controller: _controller,
         onAdd: addNewTask,
-        onCancel: () => Navigator.pop(context, 'Cancel'),
+        onCancel: () => Navigator.pop(context),
       ),
     );
   }
