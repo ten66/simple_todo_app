@@ -27,6 +27,15 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  // taskListにtaskを追加する処理
+  void addNewTask() {
+    setState(() {
+      taskList.add([_controller.text, false]);
+      _controller.clear();
+    });
+    Navigator.pop(context, 'Add');
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +71,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: AddTaskButton(
         controller: _controller,
-        onAdd: () => Navigator.pop(context, 'Add'),
+        onAdd: addNewTask,
         onCancel: () => Navigator.pop(context, 'Cancel'),
       ),
     );
