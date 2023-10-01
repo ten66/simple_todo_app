@@ -25,10 +25,13 @@ class _HomePageState extends State<HomePage> {
 
   // taskListにtaskを追加する処理
   void addNewTask() {
-    setState(() {
-      taskList.add([_controller.text, false]);
-      _controller.clear();
-    });
+    // textfieldが空欄かどうか
+    if (_controller.text != '') {
+      setState(() {
+        taskList.add([_controller.text, false]);
+        _controller.clear();
+      });
+    }
     Navigator.pop(context, 'Add');
   }
 
@@ -50,19 +53,22 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 15),
         ],
       ),
-      // タスクデータがない時用の画面
-      // body: const Center(
-      //   child: Text('No Task!!'),
-      // ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView.builder(
-          itemCount: taskList.length,
-          itemBuilder: (context, index) => TaskCard(
-            taskName: taskList[index][0],
-            taskCompleted: taskList[index][1],
-            onChanged: (value) => checkBoxChanged(value, index),
+      // taskListにデータがあるか無いかで画面描画を変更する
+      body: Visibility(
+        visible: taskList.isEmpty,
+        replacement: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: ListView.builder(
+            itemCount: taskList.length,
+            itemBuilder: (context, index) => TaskCard(
+              taskName: taskList[index][0],
+              taskCompleted: taskList[index][1],
+              onChanged: (value) => checkBoxChanged(value, index),
+            ),
           ),
+        ),
+        child: const Center(
+          child: Text('No Task.'),
         ),
       ),
       floatingActionButton: AddTaskButton(
