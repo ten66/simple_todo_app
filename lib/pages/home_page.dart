@@ -15,11 +15,7 @@ class _HomePageState extends State<HomePage> {
   // text controller
   final _controller = TextEditingController();
 
-  List taskList = [
-    ['友達に電話する', false],
-    ['洗濯する', false],
-    ['勉強する', false],
-  ];
+  List taskList = [];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
