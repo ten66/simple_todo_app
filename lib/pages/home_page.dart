@@ -12,15 +12,33 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List taskList = [
-    ['友達に電話する', false],
-    ['洗濯する', false],
-    ['勉強する', false],
-  ];
+  // text controller
+  final _controller = TextEditingController();
+
+  List taskList = [];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       taskList[index][1] = !taskList[index][1];
+    });
+  }
+
+  // taskListにtaskを追加する処理
+  void addNewTask() {
+    // textfieldが空欄かどうか
+    if (_controller.text != '') {
+      setState(() {
+        taskList.add([_controller.text, false]);
+        _controller.clear();
+      });
+    }
+    Navigator.pop(context);
+  }
+
+  // checkBoxがtrueのtaskを削除する処理
+  void deleteTask() {
+    setState(() {
+      taskList = taskList.where((task) => !task[1]).toList();
     });
   }
 
@@ -36,28 +54,35 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: deleteTask,
             icon: const Icon(Icons.sort_outlined),
           ),
           const SizedBox(width: 15),
         ],
       ),
-      // タスクデータがない時用の画面
-      // body: const Center(
-      //   child: Text('No Task!!'),
-      // ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        child: ListView.builder(
-          itemCount: taskList.length,
-          itemBuilder: (context, index) => TaskCard(
-            taskName: taskList[index][0],
-            taskCompleted: taskList[index][1],
-            onChanged: (value) => checkBoxChanged(value, index),
+      // taskListにデータがあるか無いかで画面描画を変更する
+      body: Visibility(
+        visible: taskList.isEmpty,
+        replacement: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20),
+          child: ListView.builder(
+            itemCount: taskList.length,
+            itemBuilder: (context, index) => TaskCard(
+              taskName: taskList[index][0],
+              taskCompleted: taskList[index][1],
+              onChanged: (value) => checkBoxChanged(value, index),
+            ),
           ),
         ),
+        child: const Center(
+          child: Text('No Task.'),
+        ),
       ),
-      floatingActionButton: const AddTaskButton(),
+      floatingActionButton: AddTaskButton(
+        controller: _controller,
+        onAdd: addNewTask,
+        onCancel: () => Navigator.pop(context),
+      ),
     );
   }
 }
