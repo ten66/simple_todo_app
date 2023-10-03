@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
-import 'package:simple_todo_app/widgets/task_card.dart';
+// import 'package:simple_todo_app/widgets/task_card.dart';
 
 import '../widgets/add_task_button.dart';
 
@@ -65,13 +65,25 @@ class _HomePageState extends State<HomePage> {
         visible: taskList.isEmpty,
         replacement: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView.builder(
+          child: ReorderableListView.builder(
+            padding: const EdgeInsets.all(10),
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
             itemCount: taskList.length,
-            itemBuilder: (context, index) => TaskCard(
-              taskName: taskList[index][0],
-              taskCompleted: taskList[index][1],
-              onChanged: (value) => checkBoxChanged(value, index),
-            ),
+            // itemBuilder: (context, index) => TaskCard(
+            //   task: taskList[index],
+            //   taskName: taskList[index][0],
+            //   taskCompleted: taskList[index][1],
+            //   onChanged: (value) => checkBoxChanged(value, index),
+            // ),
+            itemBuilder: (context, index) => myTask(index, taskList[index]),
+            onReorder: (oldIndex, newIndex) {
+              setState(() {
+                if (oldIndex < newIndex) newIndex--;
+                final List task = taskList.removeAt(oldIndex);
+                taskList.insert(newIndex, task);
+              });
+            },
           ),
         ),
         child: const Center(
@@ -85,4 +97,36 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  Widget myTask(int index, List task) => Container(
+        key: Key('$index'),
+        // margin: const EdgeInsets.only(top: 8, right: 10, left: 10),
+        padding: const EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          color: kTaskCardColor,
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Row(
+          children: [
+            // check box
+            Checkbox(
+              value: task[1],
+              onChanged: (value) => checkBoxChanged(value, index),
+              activeColor: kCheckBoxColor,
+              checkColor: kTaskCardColor,
+            ),
+
+            // task name
+            Text(
+              task[0],
+              style: TextStyle(
+                fontSize: 16,
+                decoration:
+                    task[1] ? TextDecoration.lineThrough : TextDecoration.none,
+                decorationThickness: 1.8,
+              ),
+            ),
+          ],
+        ),
+      );
 }
