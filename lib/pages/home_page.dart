@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: const Center(
-          child: Text('No Task.'),
+          child: Text('タスクがありません'),
         ),
       ),
       floatingActionButton: AddTaskButton(
