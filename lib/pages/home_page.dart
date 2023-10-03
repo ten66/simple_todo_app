@@ -73,8 +73,9 @@ class _HomePageState extends State<HomePage> {
       body: Visibility(
         visible: taskList.isEmpty,
         replacement: Padding(
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ReorderableListView.builder(
+            padding: const EdgeInsets.only(top: 20, bottom: 40),
             proxyDecorator: (child, index, animation) => Material(
               type: MaterialType.transparency,
               child: child,
