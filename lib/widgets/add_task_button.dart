@@ -23,17 +23,20 @@ class AddTaskButton extends StatelessWidget {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('タスク追加'),
-          content: CupertinoTextField(
-            controller: controller,
-            placeholder: 'task name',
-            cursorColor: kAppBarColor,
+          title: const Text('新規タスク追加'),
+          content: Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: CupertinoTextField(
+              controller: controller,
+              placeholder: 'task name',
+              cursorColor: kAppBarColor,
+            ),
           ),
           actions: [
             TextButton(
               onPressed: onCancel,
               child: const Text(
-                'Cancel',
+                'キャンセル',
                 style: TextStyle(
                   color: kAppBarColor,
                   fontWeight: FontWeight.bold,
@@ -43,7 +46,7 @@ class AddTaskButton extends StatelessWidget {
             TextButton(
               onPressed: onAdd,
               child: const Text(
-                'Add',
+                '追加',
                 style: TextStyle(
                   color: kAppBarColor,
                   fontWeight: FontWeight.bold,
