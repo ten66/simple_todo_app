@@ -16,7 +16,7 @@ class TaskCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15, right: 10, left: 10),
+      padding: const EdgeInsets.only(top: 8, right: 10, left: 10),
       child: Container(
         padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
@@ -37,7 +37,7 @@ class TaskCard extends StatelessWidget {
             Text(
               taskName,
               style: TextStyle(
-                fontSize: 15,
+                fontSize: 16,
                 decoration: taskCompleted
                     ? TextDecoration.lineThrough
                     : TextDecoration.none,
