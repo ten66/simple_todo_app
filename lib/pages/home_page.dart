@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/pages/setting_page.dart';
 import 'package:simple_todo_app/widgets/delete_task_button.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
@@ -51,8 +52,14 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         leading: IconButton(
-          onPressed: () {},
           icon: const Icon(Icons.settings_outlined),
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => const SettingPage(),
+              ),
+            );
+          },
         ),
         actions: [
           DeleteTaskButton(
