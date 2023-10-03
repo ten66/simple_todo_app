@@ -64,9 +64,9 @@ class _HomePageState extends State<HomePage> {
       body: Visibility(
         visible: taskList.isEmpty,
         replacement: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: ReorderableListView.builder(
-            padding: const EdgeInsets.all(10),
+            // padding: const EdgeInsets.all(10),
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: taskList.length,
@@ -132,6 +132,7 @@ class _HomePageState extends State<HomePage> {
       );
 
   Widget taskCard(int index, List task) => Card(
+        // margin: EdgeInsets.zero,
         key: Key('$index'),
         color: kTaskCardColor,
         child: ListTile(
@@ -152,4 +153,26 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
+
+  Widget taskTile(int index, List task) {
+    return ListTile(
+      key: Key('$index'),
+      tileColor: kTaskCardColor,
+      leading: Checkbox(
+        value: task[1],
+        onChanged: (value) => checkBoxChanged(value, index),
+        activeColor: kCheckBoxColor,
+        checkColor: kTaskCardColor,
+      ),
+      title: Text(
+        task[0],
+        style: TextStyle(
+          fontSize: 16,
+          decoration:
+              task[1] ? TextDecoration.lineThrough : TextDecoration.none,
+          decorationThickness: 1.8,
+        ),
+      ),
+    );
+  }
 }
