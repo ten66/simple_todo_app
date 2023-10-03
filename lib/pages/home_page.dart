@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
-// import 'package:simple_todo_app/widgets/task_card.dart';
+import 'package:simple_todo_app/widgets/task_card.dart';
 
 import '../widgets/add_task_button.dart';
 
@@ -73,13 +73,13 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: taskList.length,
-            // itemBuilder: (context, index) => TaskCard(
-            //   task: taskList[index],
-            //   taskName: taskList[index][0],
-            //   taskCompleted: taskList[index][1],
-            //   onChanged: (value) => checkBoxChanged(value, index),
-            // ),
-            itemBuilder: (context, index) => taskCard(index, taskList[index]),
+            itemBuilder: (context, index) => Container(
+              key: Key('$index'),
+              child: TaskCard(
+                task: taskList[index],
+                onChanged: (value) => checkBoxChanged(value, index),
+              ),
+            ),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
@@ -100,26 +100,4 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
-
-  Widget taskCard(int index, List task) => Card(
-        key: Key('$index'),
-        color: kTaskCardColor,
-        child: ListTile(
-          leading: Checkbox(
-            value: task[1],
-            onChanged: (value) => checkBoxChanged(value, index),
-            activeColor: kCheckBoxColor,
-            checkColor: kTaskCardColor,
-          ),
-          title: Text(
-            task[0],
-            style: TextStyle(
-              fontSize: 16,
-              decoration:
-                  task[1] ? TextDecoration.lineThrough : TextDecoration.none,
-              decorationThickness: 1.8,
-            ),
-          ),
-        ),
-      );
 }
