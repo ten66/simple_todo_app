@@ -66,7 +66,6 @@ class _HomePageState extends State<HomePage> {
         replacement: Padding(
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: ReorderableListView.builder(
-            // padding: const EdgeInsets.all(10),
             proxyDecorator: (child, index, animation) => Material(
               type: MaterialType.transparency,
               child: child,
@@ -80,7 +79,6 @@ class _HomePageState extends State<HomePage> {
             //   taskCompleted: taskList[index][1],
             //   onChanged: (value) => checkBoxChanged(value, index),
             // ),
-            // itemBuilder: (context, index) => myTask(index, taskList[index]),
             itemBuilder: (context, index) => taskCard(index, taskList[index]),
             onReorder: (oldIndex, newIndex) {
               setState(() {
@@ -103,40 +101,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  Widget myTask(int index, List task) => Container(
-        key: Key('$index'),
-        // margin: const EdgeInsets.only(top: 8, right: 10, left: 10),
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: kTaskCardColor,
-          borderRadius: BorderRadius.circular(12),
-        ),
-        child: Row(
-          children: [
-            // check box
-            Checkbox(
-              value: task[1],
-              onChanged: (value) => checkBoxChanged(value, index),
-              activeColor: kCheckBoxColor,
-              checkColor: kTaskCardColor,
-            ),
-
-            // task name
-            Text(
-              task[0],
-              style: TextStyle(
-                fontSize: 16,
-                decoration:
-                    task[1] ? TextDecoration.lineThrough : TextDecoration.none,
-                decorationThickness: 1.8,
-              ),
-            ),
-          ],
-        ),
-      );
-
   Widget taskCard(int index, List task) => Card(
-        // margin: EdgeInsets.zero,
         key: Key('$index'),
         color: kTaskCardColor,
         child: ListTile(
@@ -157,26 +122,4 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
       );
-
-  Widget taskTile(int index, List task) {
-    return ListTile(
-      key: Key('$index'),
-      tileColor: kTaskCardColor,
-      leading: Checkbox(
-        value: task[1],
-        onChanged: (value) => checkBoxChanged(value, index),
-        activeColor: kCheckBoxColor,
-        checkColor: kTaskCardColor,
-      ),
-      title: Text(
-        task[0],
-        style: TextStyle(
-          fontSize: 16,
-          decoration:
-              task[1] ? TextDecoration.lineThrough : TextDecoration.none,
-          decorationThickness: 1.8,
-        ),
-      ),
-    );
-  }
 }
