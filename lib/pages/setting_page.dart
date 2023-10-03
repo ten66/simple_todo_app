@@ -14,7 +14,10 @@ class SettingPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text('設定'),
+        title: const Text(
+          '設定',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
     );
   }
