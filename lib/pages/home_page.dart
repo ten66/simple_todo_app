@@ -76,7 +76,8 @@ class _HomePageState extends State<HomePage> {
             //   taskCompleted: taskList[index][1],
             //   onChanged: (value) => checkBoxChanged(value, index),
             // ),
-            itemBuilder: (context, index) => myTask(index, taskList[index]),
+            // itemBuilder: (context, index) => myTask(index, taskList[index]),
+            itemBuilder: (context, index) => taskCard(index, taskList[index]),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
@@ -127,6 +128,28 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ],
+        ),
+      );
+
+  Widget taskCard(int index, List task) => Card(
+        key: Key('$index'),
+        color: kTaskCardColor,
+        child: ListTile(
+          leading: Checkbox(
+            value: task[1],
+            onChanged: (value) => checkBoxChanged(value, index),
+            activeColor: kCheckBoxColor,
+            checkColor: kTaskCardColor,
+          ),
+          title: Text(
+            task[0],
+            style: TextStyle(
+              fontSize: 16,
+              decoration:
+                  task[1] ? TextDecoration.lineThrough : TextDecoration.none,
+              decorationThickness: 1.8,
+            ),
+          ),
         ),
       );
 }
