@@ -1,37 +1,28 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:simple_todo_app/constants.dart';
 
-import '../constants.dart';
-
-class AddTaskButton extends StatelessWidget {
-  final dynamic controller;
-  final VoidCallback onAdd;
+class DeleteTaskButton extends StatelessWidget {
+  final VoidCallback onDelete;
   final VoidCallback onCancel;
 
-  const AddTaskButton({
+  const DeleteTaskButton({
     super.key,
-    required this.controller,
-    required this.onAdd,
+    required this.onDelete,
     required this.onCancel,
   });
 
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      backgroundColor: kAppBarColor,
+    return IconButton(
+      icon: const FaIcon(FontAwesomeIcons.trashCan),
       onPressed: () => showCupertinoDialog(
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('新規タスク追加'),
-          content: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: CupertinoTextField(
-              controller: controller,
-              placeholder: 'task name',
-              cursorColor: kAppBarColor,
-            ),
-          ),
+          title: const Text('タスクの削除'),
+          content: const Text('完了したタスクを全て削除しますか？'),
           actions: [
             TextButton(
               onPressed: onCancel,
@@ -44,9 +35,9 @@ class AddTaskButton extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: onAdd,
+              onPressed: onDelete,
               child: const Text(
-                '追加',
+                '削除',
                 style: TextStyle(
                   color: kAppBarColor,
                   fontWeight: FontWeight.bold,
@@ -56,8 +47,6 @@ class AddTaskButton extends StatelessWidget {
           ],
         ),
       ),
-      tooltip: 'add task',
-      child: const Icon(Icons.add),
     );
   }
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/widgets/delete_task_button.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
 import '../widgets/add_task_button.dart';
@@ -40,6 +41,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       taskList = taskList.where((task) => !task[1]).toList();
     });
+    Navigator.pop(context);
   }
 
   @override
@@ -53,9 +55,9 @@ class _HomePageState extends State<HomePage> {
           icon: const Icon(Icons.settings_outlined),
         ),
         actions: [
-          IconButton(
-            onPressed: deleteTask,
-            icon: const Icon(Icons.sort_outlined),
+          DeleteTaskButton(
+            onDelete: deleteTask,
+            onCancel: () => Navigator.pop(context),
           ),
           const SizedBox(width: 15),
         ],
@@ -64,18 +66,33 @@ class _HomePageState extends State<HomePage> {
       body: Visibility(
         visible: taskList.isEmpty,
         replacement: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: ListView.builder(
-            itemCount: taskList.length,
-            itemBuilder: (context, index) => TaskCard(
-              taskName: taskList[index][0],
-              taskCompleted: taskList[index][1],
-              onChanged: (value) => checkBoxChanged(value, index),
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
+          child: ReorderableListView.builder(
+            proxyDecorator: (child, index, animation) => Material(
+              type: MaterialType.transparency,
+              child: child,
             ),
+            shrinkWrap: true,
+            physics: const ClampingScrollPhysics(),
+            itemCount: taskList.length,
+            itemBuilder: (context, index) => Container(
+              key: Key('$index'),
+              child: TaskCard(
+                task: taskList[index],
+                onChanged: (value) => checkBoxChanged(value, index),
+              ),
+            ),
+            onReorder: (oldIndex, newIndex) {
+              setState(() {
+                if (oldIndex < newIndex) newIndex--;
+                final List task = taskList.removeAt(oldIndex);
+                taskList.insert(newIndex, task);
+              });
+            },
           ),
         ),
         child: const Center(
-          child: Text('No Task.'),
+          child: Text('タスクがありません'),
         ),
       ),
       floatingActionButton: AddTaskButton(
