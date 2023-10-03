@@ -67,6 +67,10 @@ class _HomePageState extends State<HomePage> {
           padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
           child: ReorderableListView.builder(
             // padding: const EdgeInsets.all(10),
+            proxyDecorator: (child, index, animation) => Material(
+              type: MaterialType.transparency,
+              child: child,
+            ),
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: taskList.length,
@@ -77,7 +81,7 @@ class _HomePageState extends State<HomePage> {
             //   onChanged: (value) => checkBoxChanged(value, index),
             // ),
             // itemBuilder: (context, index) => myTask(index, taskList[index]),
-            itemBuilder: (context, index) => myTask(index, taskList[index]),
+            itemBuilder: (context, index) => taskCard(index, taskList[index]),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
