@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_todo_app/constants.dart';
 
 class SettingPage extends StatelessWidget {
@@ -18,6 +19,18 @@ class SettingPage extends StatelessWidget {
           '設定',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
+      ),
+      body: SettingsList(
+        sections: [
+          SettingsSection(
+            title: const Text('カラー'),
+            tiles: [
+              SettingsTile.navigation(
+                title: const Text('テーマカラー'),
+              ),
+            ],
+          )
+        ],
       ),
     );
   }
