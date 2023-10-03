@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
@@ -55,7 +56,7 @@ class _HomePageState extends State<HomePage> {
         actions: [
           IconButton(
             onPressed: deleteTask,
-            icon: const Icon(Icons.sort_outlined),
+            icon: const FaIcon(FontAwesomeIcons.trashCan),
           ),
           const SizedBox(width: 15),
         ],
