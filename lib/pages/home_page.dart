@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/widgets/delete_task_button.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
 import '../widgets/add_task_button.dart';
@@ -41,6 +41,7 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       taskList = taskList.where((task) => !task[1]).toList();
     });
+    Navigator.pop(context);
   }
 
   @override
@@ -54,9 +55,9 @@ class _HomePageState extends State<HomePage> {
           icon: const Icon(Icons.settings_outlined),
         ),
         actions: [
-          IconButton(
-            onPressed: deleteTask,
-            icon: const FaIcon(FontAwesomeIcons.trashCan),
+          DeleteTaskButton(
+            onDelete: deleteTask,
+            onCancel: () => Navigator.pop(context),
           ),
           const SizedBox(width: 15),
         ],
