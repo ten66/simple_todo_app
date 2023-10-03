@@ -77,7 +77,7 @@ class _HomePageState extends State<HomePage> {
             //   onChanged: (value) => checkBoxChanged(value, index),
             // ),
             // itemBuilder: (context, index) => myTask(index, taskList[index]),
-            itemBuilder: (context, index) => taskCard(index, taskList[index]),
+            itemBuilder: (context, index) => myTask(index, taskList[index]),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
