@@ -23,13 +23,44 @@ class SettingPage extends StatelessWidget {
       body: SettingsList(
         sections: [
           SettingsSection(
-            title: const Text('カラー'),
+            title: const Text('テーマカラー'),
             tiles: [
               SettingsTile.navigation(
-                title: const Text('テーマカラー'),
+                title: const Text('TODOリスト画面'),
+              ),
+              SettingsTile.navigation(
+                title: const Text('設定画面'),
               ),
             ],
-          )
+          ),
+          SettingsSection(
+            title: const Text('アプリについて'),
+            tiles: [
+              SettingsTile.navigation(
+                title: const Text('アプリを評価する'),
+              ),
+              SettingsTile.navigation(
+                title: const Text('利用規約'),
+              ),
+              SettingsTile.navigation(
+                title: const Text('プライバシーポリシー'),
+              ),
+            ],
+          ),
+          SettingsSection(
+            title: const Text('コンタクト'),
+            tiles: [
+              SettingsTile.navigation(
+                title: const Text('機能要望'),
+              ),
+              SettingsTile.navigation(
+                title: const Text('不具合のご連絡'),
+              ),
+              SettingsTile.navigation(
+                title: const Text('その他お問い合わせ'),
+              ),
+            ],
+          ),
         ],
       ),
     );
