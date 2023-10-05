@@ -100,7 +100,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         child: const Center(
-          child: Text('タスクがありません'),
+          child: Text('TODOがありません'),
         ),
       ),
       floatingActionButton: AddTaskButton(

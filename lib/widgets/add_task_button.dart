@@ -23,12 +23,12 @@ class AddTaskButton extends StatelessWidget {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('新規タスク追加'),
+          title: const Text('新規TODOの追加'),
           content: Padding(
             padding: const EdgeInsets.only(top: 10),
             child: CupertinoTextField(
               controller: controller,
-              placeholder: 'task name',
+              placeholder: 'todo name',
               cursorColor: kAppBarColor,
             ),
           ),

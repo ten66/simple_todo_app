@@ -21,8 +21,8 @@ class DeleteTaskButton extends StatelessWidget {
         context: context,
         barrierDismissible: false,
         builder: (BuildContext context) => CupertinoAlertDialog(
-          title: const Text('タスクの削除'),
-          content: const Text('完了したタスクを全て削除しますか？'),
+          title: const Text('TODOの削除'),
+          content: const Text('完了したTODOを全て削除しますか？'),
           actions: [
             TextButton(
               onPressed: onCancel,
