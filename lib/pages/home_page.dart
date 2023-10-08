@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
             // itemCount: todoList.length,
             itemCount: subTodoList.length,
             itemBuilder: (context, index) => Container(
-              key: Key('$index'),
+              key: ValueKey(subTodoList[index]),
               child: TodoCard(
                 // todo: todoList[index],
                 todo: subTodoList[index],
