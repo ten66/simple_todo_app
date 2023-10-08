@@ -24,11 +24,11 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       todoList[index][1] = !todoList[index][1];
     });
-    setState(() {
-      subTodoList[index] = !subTodoList[index].isCompleted
-          ? subTodoList[index].copyWith(isCompleted: true)
-          : subTodoList[index].copyWith(isCompleted: false);
-    });
+    // setState(() {
+    //   subTodoList[index] = !subTodoList[index].isCompleted
+    //       ? subTodoList[index].copyWith(isCompleted: true)
+    //       : subTodoList[index].copyWith(isCompleted: false);
+    // });
   }
 
   // taskListにtaskを追加する処理
