@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/widgets/todo.dart';
 
 class TodoCard extends StatelessWidget {
-  final List todo;
+  // final List todo;
+  final Todo todo;
   final Function(bool?)? onChanged;
 
   const TodoCard({
@@ -14,21 +16,24 @@ class TodoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      // key: Key('$index'),
       color: kTodoCardColor,
       child: ListTile(
         leading: Checkbox(
-          value: todo[1],
+          // value: todo[1],
+          value: todo.isCompleted,
           onChanged: onChanged,
           activeColor: kCheckBoxColor,
           checkColor: kTodoCardColor,
         ),
         title: Text(
-          todo[0],
+          // todo[0],
+          todo.title,
           style: TextStyle(
             fontSize: 16,
-            decoration:
-                todo[1] ? TextDecoration.lineThrough : TextDecoration.none,
+            decoration: todo.isCompleted
+                ? TextDecoration.lineThrough
+                : TextDecoration.none,
+            // todo[1] ? TextDecoration.lineThrough : TextDecoration.none,
             decorationThickness: 1.8,
           ),
         ),
