@@ -56,6 +56,9 @@ class _HomePageState extends State<HomePage> {
     setState(() {
       todoList = todoList.where((task) => !task[1]).toList();
     });
+    // setState(() {
+    //   subTodoList = subTodoList.where((todo) => !todo.isCompleted).toList();
+    // });
     Navigator.pop(context);
   }
 
