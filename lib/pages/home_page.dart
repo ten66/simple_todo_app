@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/pages/setting_page.dart';
 import 'package:simple_todo_app/widgets/delete_todo_button.dart';
+import 'package:simple_todo_app/widgets/todo.dart';
 import 'package:simple_todo_app/widgets/todo_card.dart';
 import 'package:simple_todo_app/widgets/add_todo_button.dart';
 
@@ -17,10 +18,16 @@ class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
   List todoList = [];
+  List<Todo> subTodoList = [];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
       todoList[index][1] = !todoList[index][1];
+    });
+    setState(() {
+      subTodoList[index] = !subTodoList[index].isCompleted
+          ? subTodoList[index].copyWith(isCompleted: true)
+          : subTodoList[index].copyWith(isCompleted: false);
     });
   }
 
