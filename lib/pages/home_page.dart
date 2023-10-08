@@ -4,7 +4,7 @@ import 'package:simple_todo_app/pages/setting_page.dart';
 import 'package:simple_todo_app/widgets/delete_task_button.dart';
 import 'package:simple_todo_app/widgets/task_card.dart';
 
-import '../widgets/add_task_button.dart';
+import '../widgets/add_todo_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,20 +17,20 @@ class _HomePageState extends State<HomePage> {
   // text controller
   final _controller = TextEditingController();
 
-  List taskList = [];
+  List todoList = [];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      taskList[index][1] = !taskList[index][1];
+      todoList[index][1] = !todoList[index][1];
     });
   }
 
   // taskListにtaskを追加する処理
-  void addNewTask() {
+  void addNewTodo() {
     // textfieldが空欄かどうか
     if (_controller.text != '') {
       setState(() {
-        taskList.add([_controller.text, false]);
+        todoList.add([_controller.text, false]);
         _controller.clear();
       });
     }
@@ -38,9 +38,9 @@ class _HomePageState extends State<HomePage> {
   }
 
   // checkBoxがtrueのtaskを削除する処理
-  void deleteTask() {
+  void deleteTodo() {
     setState(() {
-      taskList = taskList.where((task) => !task[1]).toList();
+      todoList = todoList.where((task) => !task[1]).toList();
     });
     Navigator.pop(context);
   }
@@ -63,7 +63,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           DeleteTaskButton(
-            onDelete: deleteTask,
+            onDelete: deleteTodo,
             onCancel: () => Navigator.pop(context),
           ),
           const SizedBox(width: 15),
@@ -71,7 +71,7 @@ class _HomePageState extends State<HomePage> {
       ),
       // taskListにデータがあるか無いかで画面描画を変更する
       body: Visibility(
-        visible: taskList.isEmpty,
+        visible: todoList.isEmpty,
         replacement: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ReorderableListView.builder(
@@ -82,19 +82,19 @@ class _HomePageState extends State<HomePage> {
             ),
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
-            itemCount: taskList.length,
+            itemCount: todoList.length,
             itemBuilder: (context, index) => Container(
               key: Key('$index'),
               child: TaskCard(
-                task: taskList[index],
+                task: todoList[index],
                 onChanged: (value) => checkBoxChanged(value, index),
               ),
             ),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
-                final List task = taskList.removeAt(oldIndex);
-                taskList.insert(newIndex, task);
+                final List task = todoList.removeAt(oldIndex);
+                todoList.insert(newIndex, task);
               });
             },
           ),
@@ -103,9 +103,9 @@ class _HomePageState extends State<HomePage> {
           child: Text('TODOがありません'),
         ),
       ),
-      floatingActionButton: AddTaskButton(
+      floatingActionButton: AddTodoButton(
         controller: _controller,
-        onAdd: addNewTask,
+        onAdd: addNewTodo,
         onCancel: () => Navigator.pop(context),
       ),
     );

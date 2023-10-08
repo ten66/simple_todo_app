@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 import '../constants.dart';
 
-class AddTaskButton extends StatelessWidget {
+class AddTodoButton extends StatelessWidget {
   final dynamic controller;
   final VoidCallback onAdd;
   final VoidCallback onCancel;
 
-  const AddTaskButton({
+  const AddTodoButton({
     super.key,
     required this.controller,
     required this.onAdd,
@@ -56,7 +56,7 @@ class AddTaskButton extends StatelessWidget {
           ],
         ),
       ),
-      tooltip: 'add task',
+      tooltip: 'add todo',
       child: const Icon(Icons.add),
     );
   }
