@@ -16,7 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$Todo {
-  TextEditingController get title => throw _privateConstructorUsedError;
+  String get title => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -28,7 +28,7 @@ abstract class $TodoCopyWith<$Res> {
   factory $TodoCopyWith(Todo value, $Res Function(Todo) then) =
       _$TodoCopyWithImpl<$Res, Todo>;
   @useResult
-  $Res call({TextEditingController title, bool isCompleted});
+  $Res call({String title, bool isCompleted});
 }
 
 /// @nodoc
@@ -51,7 +51,7 @@ class _$TodoCopyWithImpl<$Res, $Val extends Todo>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+              as String,
       isCompleted: null == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
@@ -67,7 +67,7 @@ abstract class _$$TodoImplCopyWith<$Res> implements $TodoCopyWith<$Res> {
       __$$TodoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TextEditingController title, bool isCompleted});
+  $Res call({String title, bool isCompleted});
 }
 
 /// @nodoc
@@ -87,7 +87,7 @@ class __$$TodoImplCopyWithImpl<$Res>
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
-              as TextEditingController,
+              as String,
       isCompleted: null == isCompleted
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
@@ -98,18 +98,27 @@ class __$$TodoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TodoImpl implements _Todo {
+class _$TodoImpl with DiagnosticableTreeMixin implements _Todo {
   const _$TodoImpl({required this.title, this.isCompleted = false});
 
   @override
-  final TextEditingController title;
+  final String title;
   @override
   @JsonKey()
   final bool isCompleted;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'Todo(title: $title, isCompleted: $isCompleted)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Todo'))
+      ..add(DiagnosticsProperty('title', title))
+      ..add(DiagnosticsProperty('isCompleted', isCompleted));
   }
 
   @override
@@ -133,12 +142,11 @@ class _$TodoImpl implements _Todo {
 }
 
 abstract class _Todo implements Todo {
-  const factory _Todo(
-      {required final TextEditingController title,
-      final bool isCompleted}) = _$TodoImpl;
+  const factory _Todo({required final String title, final bool isCompleted}) =
+      _$TodoImpl;
 
   @override
-  TextEditingController get title;
+  String get title;
   @override
   bool get isCompleted;
   @override
