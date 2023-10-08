@@ -15,13 +15,13 @@ class TodoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       // key: Key('$index'),
-      color: kTaskCardColor,
+      color: kTodoCardColor,
       child: ListTile(
         leading: Checkbox(
           value: todo[1],
           onChanged: onChanged,
           activeColor: kCheckBoxColor,
-          checkColor: kTaskCardColor,
+          checkColor: kTodoCardColor,
         ),
         title: Text(
           todo[0],
