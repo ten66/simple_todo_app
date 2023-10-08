@@ -14,50 +14,32 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // text controller
   final _controller = TextEditingController();
 
-  // List todoList = [];
-  List<Todo> subTodoList = [];
+  List<Todo> todoList = [];
 
   void checkBoxChanged(bool? value, int index) {
-    // setState(() {
-    //   todoList[index][1] = !todoList[index][1];
-    // });
     setState(() {
-      subTodoList[index] = !subTodoList[index].isCompleted
-          ? subTodoList[index].copyWith(isCompleted: true)
-          : subTodoList[index].copyWith(isCompleted: false);
+      todoList[index] = !todoList[index].isCompleted
+          ? todoList[index].copyWith(isCompleted: true)
+          : todoList[index].copyWith(isCompleted: false);
     });
   }
 
-  // taskListにtaskを追加する処理
   void addNewTodo() {
-    // textfieldが空欄かどうか
     if (_controller.text != '') {
-      // setState(() {
-      //   todoList.add([_controller.text, false]);
-      //   _controller.clear();
-      // });
       setState(() {
         Todo newTodo = Todo(title: _controller.text);
-        subTodoList.add(newTodo);
+        todoList.add(newTodo);
         _controller.clear();
       });
-      // debugPrint(subTodoList[0].title);
-      // debugPrint(subTodoList[0].isCompleted.toString());
-      // debugPrint(todoList[0][0]);
     }
     Navigator.pop(context);
   }
 
-  // checkBoxがtrueのtaskを削除する処理
   void deleteTodo() {
-    // setState(() {
-    //   todoList = todoList.where((task) => !task[1]).toList();
-    // });
     setState(() {
-      subTodoList = subTodoList.where((todo) => !todo.isCompleted).toList();
+      todoList = todoList.where((todo) => !todo.isCompleted).toList();
     });
     Navigator.pop(context);
   }
@@ -86,10 +68,8 @@ class _HomePageState extends State<HomePage> {
           const SizedBox(width: 15),
         ],
       ),
-      // taskListにデータがあるか無いかで画面描画を変更する
       body: Visibility(
-        // visible: todoList.isEmpty,
-        visible: subTodoList.isEmpty,
+        visible: todoList.isEmpty,
         replacement: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ReorderableListView.builder(
@@ -100,23 +80,19 @@ class _HomePageState extends State<HomePage> {
             ),
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
-            // itemCount: todoList.length,
-            itemCount: subTodoList.length,
+            itemCount: todoList.length,
             itemBuilder: (context, index) => Container(
-              key: ValueKey(subTodoList[index]),
+              key: ValueKey(todoList[index]),
               child: TodoCard(
-                // todo: todoList[index],
-                todo: subTodoList[index],
+                todo: todoList[index],
                 onChanged: (value) => checkBoxChanged(value, index),
               ),
             ),
             onReorder: (oldIndex, newIndex) {
               setState(() {
                 if (oldIndex < newIndex) newIndex--;
-                // final List task = todoList.removeAt(oldIndex);
-                // todoList.insert(newIndex, task);
-                final Todo todo = subTodoList.removeAt(oldIndex);
-                subTodoList.insert(newIndex, todo);
+                final Todo todo = todoList.removeAt(oldIndex);
+                todoList.insert(newIndex, todo);
               });
             },
           ),
