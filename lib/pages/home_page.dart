@@ -89,6 +89,7 @@ class _HomePageState extends State<HomePage> {
       // taskListにデータがあるか無いかで画面描画を変更する
       body: Visibility(
         visible: todoList.isEmpty,
+        // visible subTodoList.isEmpty,
         replacement: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20),
           child: ReorderableListView.builder(
@@ -100,10 +101,12 @@ class _HomePageState extends State<HomePage> {
             shrinkWrap: true,
             physics: const ClampingScrollPhysics(),
             itemCount: todoList.length,
+            // itemCount: subTodoList.length,
             itemBuilder: (context, index) => Container(
               key: Key('$index'),
               child: TodoCard(
                 todo: todoList[index],
+                // todo: subTodoList[index],
                 onChanged: (value) => checkBoxChanged(value, index),
               ),
             ),
@@ -112,6 +115,8 @@ class _HomePageState extends State<HomePage> {
                 if (oldIndex < newIndex) newIndex--;
                 final List task = todoList.removeAt(oldIndex);
                 todoList.insert(newIndex, task);
+                // final Todo todo = subTodoList.removeAt(oldIndex);
+                // subTodoList.insert(newIndex, todo);
               });
             },
           ),
