@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/pages/setting_page.dart';
-import 'package:simple_todo_app/widgets/delete_task_button.dart';
-import 'package:simple_todo_app/widgets/task_card.dart';
-
-import '../widgets/add_todo_button.dart';
+import 'package:simple_todo_app/widgets/delete_todo_button.dart';
+import 'package:simple_todo_app/widgets/todo_card.dart';
+import 'package:simple_todo_app/widgets/add_todo_button.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -62,7 +61,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
         actions: [
-          DeleteTaskButton(
+          DeleteTodoButton(
             onDelete: deleteTodo,
             onCancel: () => Navigator.pop(context),
           ),
@@ -85,8 +84,8 @@ class _HomePageState extends State<HomePage> {
             itemCount: todoList.length,
             itemBuilder: (context, index) => Container(
               key: Key('$index'),
-              child: TaskCard(
-                task: todoList[index],
+              child: TodoCard(
+                todo: todoList[index],
                 onChanged: (value) => checkBoxChanged(value, index),
               ),
             ),

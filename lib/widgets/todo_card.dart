@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:simple_todo_app/constants.dart';
 
-class TaskCard extends StatelessWidget {
-  final List task;
+class TodoCard extends StatelessWidget {
+  final List todo;
   final Function(bool?)? onChanged;
 
-  const TaskCard({
+  const TodoCard({
     super.key,
-    required this.task,
+    required this.todo,
     required this.onChanged,
   });
 
@@ -18,17 +18,17 @@ class TaskCard extends StatelessWidget {
       color: kTaskCardColor,
       child: ListTile(
         leading: Checkbox(
-          value: task[1],
+          value: todo[1],
           onChanged: onChanged,
           activeColor: kCheckBoxColor,
           checkColor: kTaskCardColor,
         ),
         title: Text(
-          task[0],
+          todo[0],
           style: TextStyle(
             fontSize: 16,
             decoration:
-                task[1] ? TextDecoration.lineThrough : TextDecoration.none,
+                todo[1] ? TextDecoration.lineThrough : TextDecoration.none,
             decorationThickness: 1.8,
           ),
         ),

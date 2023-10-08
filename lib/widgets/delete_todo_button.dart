@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:simple_todo_app/constants.dart';
 
-class DeleteTaskButton extends StatelessWidget {
+class DeleteTodoButton extends StatelessWidget {
   final VoidCallback onDelete;
   final VoidCallback onCancel;
 
-  const DeleteTaskButton({
+  const DeleteTodoButton({
     super.key,
     required this.onDelete,
     required this.onCancel,
