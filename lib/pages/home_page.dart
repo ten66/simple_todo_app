@@ -39,6 +39,14 @@ class _HomePageState extends State<HomePage> {
         todoList.add([_controller.text, false]);
         _controller.clear();
       });
+      // setState(() {
+      //   Todo newTodo = Todo(title: _controller.text);
+      //   subTodoList.add(newTodo);
+      //   _controller.clear();
+      // });
+      // debugPrint(subTodoList[0].title);
+      // debugPrint(subTodoList[0].isCompleted.toString());
+      // debugPrint(todoList[0][0]);
     }
     Navigator.pop(context);
   }
