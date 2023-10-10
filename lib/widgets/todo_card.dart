@@ -1,39 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_todo_app/constants.dart';
+import 'package:simple_todo_app/todo_list.dart';
 import 'package:simple_todo_app/widgets/todo.dart';
 
-class TodoCard extends StatelessWidget {
-  // final List todo;
+class TodoCard extends ConsumerWidget {
   final Todo todo;
-  final Function(bool?)? onChanged;
 
   const TodoCard({
     super.key,
     required this.todo,
-    required this.onChanged,
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Card(
       color: kTodoCardColor,
       child: ListTile(
         leading: Checkbox(
-          // value: todo[1],
           value: todo.isCompleted,
-          onChanged: onChanged,
+          onChanged: (value) {
+            final notifier = ref.read(todoListNotifierProvider.notifier);
+            notifier.toggleCompleted(todo.id);
+          },
           activeColor: kCheckBoxColor,
           checkColor: kTodoCardColor,
         ),
         title: Text(
-          // todo[0],
           todo.title,
           style: TextStyle(
             fontSize: 16,
             decoration: todo.isCompleted
                 ? TextDecoration.lineThrough
                 : TextDecoration.none,
-            // todo[1] ? TextDecoration.lineThrough : TextDecoration.none,
             decorationThickness: 1.8,
           ),
         ),

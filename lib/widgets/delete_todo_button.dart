@@ -6,14 +6,7 @@ import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/todo_list.dart';
 
 class DeleteTodoButton extends ConsumerWidget {
-  // final VoidCallback onDelete;
-  final VoidCallback onCancel;
-
-  const DeleteTodoButton({
-    super.key,
-    // required this.onDelete,
-    required this.onCancel,
-  });
+  const DeleteTodoButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -27,7 +20,7 @@ class DeleteTodoButton extends ConsumerWidget {
           content: const Text('完了したTODOを全て削除しますか？'),
           actions: [
             TextButton(
-              onPressed: onCancel,
+              onPressed: () => Navigator.pop(context),
               child: const Text(
                 'キャンセル',
                 style: TextStyle(

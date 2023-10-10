@@ -8,16 +8,7 @@ import 'package:uuid/uuid.dart';
 import '../constants.dart';
 
 class AddTodoButton extends ConsumerWidget {
-  // final dynamic controller;
-  // final VoidCallback onAdd;
-  final VoidCallback onCancel;
-
-  const AddTodoButton({
-    super.key,
-    // required this.controller,
-    // required this.onAdd,
-    required this.onCancel,
-  });
+  const AddTodoButton({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -41,7 +32,10 @@ class AddTodoButton extends ConsumerWidget {
           ),
           actions: [
             TextButton(
-              onPressed: onCancel,
+              onPressed: () {
+                controller.clear();
+                Navigator.pop(context);
+              },
               child: const Text(
                 'キャンセル',
                 style: TextStyle(
@@ -51,12 +45,15 @@ class AddTodoButton extends ConsumerWidget {
               ),
             ),
             TextButton(
-              // onPressed: onAdd,
               onPressed: () {
-                final notifier = ref.read(todoListNotifierProvider.notifier);
-                String id = uuid.v4();
-                Todo newTodo = Todo(id: id, title: controller.text);
-                notifier.addTodo(newTodo);
+                if (controller.text != '') {
+                  final notifier = ref.read(todoListNotifierProvider.notifier);
+                  String id = uuid.v4();
+                  Todo newTodo = Todo(id: id, title: controller.text);
+                  notifier.addTodo(newTodo);
+                  controller.clear();
+                }
+                Navigator.pop(context);
               },
               child: const Text(
                 '追加',
