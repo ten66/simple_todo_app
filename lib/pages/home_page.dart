@@ -5,6 +5,7 @@ import 'package:simple_todo_app/widgets/delete_todo_button.dart';
 import 'package:simple_todo_app/widgets/todo.dart';
 import 'package:simple_todo_app/widgets/todo_card.dart';
 import 'package:simple_todo_app/widgets/add_todo_button.dart';
+import 'package:uuid/uuid.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,6 +18,7 @@ class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
   List<Todo> todoList = [];
+  var uuid = const Uuid();
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
@@ -29,11 +31,13 @@ class _HomePageState extends State<HomePage> {
   void addNewTodo() {
     if (_controller.text != '') {
       setState(() {
-        Todo newTodo = Todo(title: _controller.text);
+        final id = uuid.v4();
+        Todo newTodo = Todo(id: id, title: _controller.text);
         todoList.add(newTodo);
         _controller.clear();
       });
     }
+
     Navigator.pop(context);
   }
 
