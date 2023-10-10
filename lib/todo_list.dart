@@ -8,4 +8,30 @@ class TodoListNotifier extends _$TodoListNotifier {
   List<Todo> build() {
     return [];
   }
+
+  void addTodo(Todo todo) {
+    state = [...state, todo];
+  }
+
+  void removeTodo(String id) {
+    state = state.where((todo) => todo.id != id).toList();
+  }
+
+  void toggleCompleted(String id) {
+    state = state
+        .map(
+          (todo) => Todo(
+            id: todo.id,
+            title: todo.title,
+            isCompleted: (id != todo.id) ? todo.isCompleted : !todo.isCompleted,
+          ),
+        )
+        .toList();
+  }
+
+  void onReorder(int oldIndex, int newIndex) {
+    if (oldIndex < newIndex) newIndex--;
+    final Todo todo = state.removeAt(oldIndex);
+    state.insert(newIndex, todo);
+  }
 }
