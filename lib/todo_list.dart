@@ -13,8 +13,8 @@ class TodoListNotifier extends _$TodoListNotifier {
     state = [...state, todo];
   }
 
-  void removeTodo(String id) {
-    state = state.where((todo) => todo.id != id).toList();
+  void removeTodo() {
+    state = state.where((todo) => !todo.isCompleted).toList();
   }
 
   void toggleCompleted(String id) {

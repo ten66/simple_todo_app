@@ -1,55 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/pages/setting_page.dart';
+import 'package:simple_todo_app/todo_list.dart';
 import 'package:simple_todo_app/widgets/delete_todo_button.dart';
 import 'package:simple_todo_app/widgets/todo.dart';
 import 'package:simple_todo_app/widgets/todo_card.dart';
 import 'package:simple_todo_app/widgets/add_todo_button.dart';
 import 'package:uuid/uuid.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class HomePage extends ConsumerWidget {
+  HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
   final _controller = TextEditingController();
 
-  List<Todo> todoList = [];
+  // List<Todo> todoList = [];
   var uuid = const Uuid();
 
-  void checkBoxChanged(bool? value, int index) {
-    setState(() {
-      todoList[index] = !todoList[index].isCompleted
-          ? todoList[index].copyWith(isCompleted: true)
-          : todoList[index].copyWith(isCompleted: false);
-    });
-  }
+  // void checkBoxChanged(bool? value, int index) {
+  //   setState(() {
+  //     todoList[index] = !todoList[index].isCompleted
+  //         ? todoList[index].copyWith(isCompleted: true)
+  //         : todoList[index].copyWith(isCompleted: false);
+  //   });
+  // }
 
-  void addNewTodo() {
-    if (_controller.text != '') {
-      setState(() {
-        final id = uuid.v4();
-        Todo newTodo = Todo(id: id, title: _controller.text);
-        todoList.add(newTodo);
-        _controller.clear();
-      });
-    }
+  // void addNewTodo() {
+  //   if (_controller.text != '') {
+  //     setState(() {
+  //       final id = uuid.v4();
+  //       Todo newTodo = Todo(id: id, title: _controller.text);
+  //       todoList.add(newTodo);
+  //       _controller.clear();
+  //     });
+  //   }
 
-    Navigator.pop(context);
-  }
+  //   Navigator.pop(context);
+  // }
 
-  void deleteTodo() {
-    setState(() {
-      todoList = todoList.where((todo) => !todo.isCompleted).toList();
-    });
-    Navigator.pop(context);
-  }
+  // void deleteTodo() {
+  //   setState(() {
+  //     todoList = todoList.where((todo) => !todo.isCompleted).toList();
+  //   });
+  //   Navigator.pop(context);
+  // }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final todoList = ref.watch(todoListNotifierProvider);
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       appBar: AppBar(
@@ -66,7 +65,7 @@ class _HomePageState extends State<HomePage> {
         ),
         actions: [
           DeleteTodoButton(
-            onDelete: deleteTodo,
+            // onDelete: deleteTodo,
             onCancel: () => Navigator.pop(context),
           ),
           const SizedBox(width: 15),
