@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
+      // backgroundColor: kBackgroundColor,
       appBar: AppBar(
         backgroundColor: kAppBarColor,
         leading: IconButton(
