@@ -5,8 +5,6 @@ import 'package:simple_todo_app/todo_list.dart';
 import 'package:simple_todo_app/widgets/todo.dart';
 import 'package:uuid/uuid.dart';
 
-import '../constants.dart';
-
 class AddTodoButton extends ConsumerWidget {
   const AddTodoButton({super.key});
 
@@ -16,7 +14,8 @@ class AddTodoButton extends ConsumerWidget {
     final controller = TextEditingController();
 
     return FloatingActionButton(
-      backgroundColor: kAppBarColor,
+      backgroundColor: Theme.of(context).primaryColor,
+      shape: const CircleBorder(),
       onPressed: () => showCupertinoDialog(
         context: context,
         barrierDismissible: false,
@@ -27,7 +26,7 @@ class AddTodoButton extends ConsumerWidget {
             child: CupertinoTextField(
               controller: controller,
               placeholder: 'todo name',
-              cursorColor: kAppBarColor,
+              cursorColor: Theme.of(context).primaryColor,
             ),
           ),
           actions: [
@@ -36,10 +35,10 @@ class AddTodoButton extends ConsumerWidget {
                 controller.clear();
                 Navigator.pop(context);
               },
-              child: const Text(
+              child: Text(
                 'キャンセル',
                 style: TextStyle(
-                  color: kAppBarColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -55,10 +54,10 @@ class AddTodoButton extends ConsumerWidget {
                 }
                 Navigator.pop(context);
               },
-              child: const Text(
+              child: Text(
                 '追加',
                 style: TextStyle(
-                  color: kAppBarColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
