@@ -21,8 +21,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'TODO APP',
       theme: ThemeData(
+        // theme変更機能を設定時に使用予定
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        brightness: Brightness.dark,
+        // brightness: Brightness.dark,
         // brightness: Brightness.light,
         useMaterial3: true,
         primaryColor: kAppBarColor,
