@@ -27,10 +27,10 @@ class SettingPage extends StatelessWidget {
                 _SingleSection(
                   title: "アプリについて",
                   children: [
-                    _CustomListTile(
-                      title: "テーマカラー",
-                      icon: CupertinoIcons.paintbrush,
-                    ),
+                    // _CustomListTile(
+                    //   title: "テーマカラー",
+                    //   icon: CupertinoIcons.paintbrush,
+                    // ),
                     _CustomListTile(
                       title: "アプリを評価する",
                       icon: CupertinoIcons.star,
