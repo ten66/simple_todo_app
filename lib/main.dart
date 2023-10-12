@@ -23,6 +23,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
+        primaryColor: kAppBarColor,
         scaffoldBackgroundColor: kBackgroundColor,
       ),
       home: const HomePage(),
