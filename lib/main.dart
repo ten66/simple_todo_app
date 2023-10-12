@@ -22,6 +22,8 @@ class MyApp extends StatelessWidget {
       title: 'TODO APP',
       theme: ThemeData(
         // colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        // brightness: Brightness.light,
         useMaterial3: true,
         primaryColor: kAppBarColor,
         scaffoldBackgroundColor: kBackgroundColor,
