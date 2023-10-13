@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/todo_list.dart';
 
 class DeleteTodoButton extends ConsumerWidget {
@@ -21,10 +20,10 @@ class DeleteTodoButton extends ConsumerWidget {
           actions: [
             TextButton(
               onPressed: () => Navigator.pop(context),
-              child: const Text(
+              child: Text(
                 'キャンセル',
                 style: TextStyle(
-                  color: kAppBarColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -35,10 +34,10 @@ class DeleteTodoButton extends ConsumerWidget {
                 notifier.removeTodo();
                 Navigator.pop(context);
               },
-              child: const Text(
+              child: Text(
                 '削除',
                 style: TextStyle(
-                  color: kAppBarColor,
+                  color: Theme.of(context).primaryColor,
                   fontWeight: FontWeight.bold,
                 ),
               ),

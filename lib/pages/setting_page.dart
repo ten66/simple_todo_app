@@ -1,68 +1,138 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:settings_ui/settings_ui.dart';
 import 'package:simple_todo_app/constants.dart';
 
 class SettingPage extends StatelessWidget {
-  const SettingPage({super.key});
+  const SettingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: kBackgroundColor,
       appBar: AppBar(
-        backgroundColor: kAppBarColor,
+        backgroundColor: Theme.of(context).primaryColor,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () => Navigator.pop(context),
         ),
-        title: const Text(
-          '設定',
-          style: TextStyle(fontWeight: FontWeight.bold),
+        title: const Text("設定"),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20),
+        child: Center(
+          child: Container(
+            constraints: const BoxConstraints(maxWidth: 400),
+            child: ListView(
+              physics: const NeverScrollableScrollPhysics(),
+              children: const [
+                _SingleSection(
+                  title: "アプリについて",
+                  children: [
+                    // _CustomListTile(
+                    //   title: "テーマカラー",
+                    //   icon: CupertinoIcons.paintbrush,
+                    // ),
+                    _CustomListTile(
+                      title: "アプリを評価する",
+                      icon: CupertinoIcons.star,
+                    ),
+                  ],
+                ),
+                _SingleSection(
+                  title: "コンタクト",
+                  children: [
+                    _CustomListTile(
+                      title: "機能要望",
+                      icon: CupertinoIcons.bubble_left,
+                    ),
+                    _CustomListTile(
+                      title: "不具合のご連絡",
+                      icon: CupertinoIcons.exclamationmark_bubble,
+                    ),
+                    _CustomListTile(
+                      title: "その他お問い合わせ",
+                      icon: CupertinoIcons.envelope,
+                    ),
+                  ],
+                ),
+                _SingleSection(
+                  title: "その他",
+                  children: [
+                    _CustomListTile(
+                      title: "利用規約",
+                      icon: CupertinoIcons.text_justify,
+                    ),
+                    _CustomListTile(
+                      title: "プライバシーポリシー",
+                      icon: CupertinoIcons.lock,
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
-      body: SettingsList(
-        sections: [
-          SettingsSection(
-            title: const Text('テーマカラー'),
-            tiles: [
-              SettingsTile.navigation(
-                title: const Text('TODOリスト画面'),
-              ),
-              SettingsTile.navigation(
-                title: const Text('設定画面'),
-              ),
-            ],
+    );
+  }
+}
+
+class _CustomListTile extends StatelessWidget {
+  final String title;
+  final IconData icon;
+  const _CustomListTile({
+    Key? key,
+    required this.title,
+    required this.icon,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title),
+      leading: Icon(icon),
+      trailing: const Icon(CupertinoIcons.forward, size: 18),
+      onTap: () {},
+    );
+  }
+}
+
+class _SingleSection extends StatelessWidget {
+  final String title;
+  final List<Widget> children;
+  const _SingleSection({
+    Key? key,
+    required this.title,
+    required this.children,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 16),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            title,
+            style: Theme.of(context)
+                .textTheme
+                .displaySmall
+                ?.copyWith(fontSize: 16),
           ),
-          SettingsSection(
-            title: const Text('アプリについて'),
-            tiles: [
-              SettingsTile.navigation(
-                title: const Text('アプリを評価する'),
-              ),
-              SettingsTile.navigation(
-                title: const Text('利用規約'),
-              ),
-              SettingsTile.navigation(
-                title: const Text('プライバシーポリシー'),
-              ),
-            ],
+        ),
+        Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: kTodoCardColor,
           ),
-          SettingsSection(
-            title: const Text('コンタクト'),
-            tiles: [
-              SettingsTile.navigation(
-                title: const Text('機能要望'),
-              ),
-              SettingsTile.navigation(
-                title: const Text('不具合のご連絡'),
-              ),
-              SettingsTile.navigation(
-                title: const Text('その他お問い合わせ'),
-              ),
-            ],
+          width: double.infinity,
+          child: Column(
+            children: children,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
