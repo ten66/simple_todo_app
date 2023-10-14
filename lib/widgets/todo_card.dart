@@ -28,6 +28,8 @@ class TodoCard extends ConsumerWidget {
         ),
         title: Text(
           todo.title,
+          overflow: TextOverflow.ellipsis,
+          maxLines: 3,
           style: TextStyle(
             fontSize: 16,
             decoration: todo.isCompleted
