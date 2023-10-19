@@ -12,4 +12,9 @@ class TodoItem extends HiveObject {
 
   @HiveField(2)
   bool isCompleted = false;
+
+  @HiveField(3)
+  int orderIndex = 0;
+
+  TodoItem(this.id, this.title);
 }
