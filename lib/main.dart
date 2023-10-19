@@ -4,11 +4,12 @@ import 'package:simple_todo_app/constants.dart';
 import 'package:simple_todo_app/pages/home_page.dart';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:simple_todo_app/todo_item.dart';
 
 void main() async {
   await Hive.initFlutter();
-
-  var box = await Hive.openBox('todoBox');
+  Hive.registerAdapter(TodoItemAdapter());
+  var box = await Hive.openBox<TodoItem>('todoBox');
 
   runApp(
     const ProviderScope(
